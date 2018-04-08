@@ -1,11 +1,11 @@
-# atyetiAssignment
+# AtyetiAssignment
 This project contain Processing and storing large size employee details in data base
-High Level Design:
-Application Layer (processing layer)
+# High Level Design:
+# Application Layer (processing layer)
 Design should keep on polling on the directory where the files are placed .if it find the files ,this layer take care of retrieving all files form the directory and submit each and every to threadpool executor(FixedSizeThreadPoolExecutor )(i.e all files are parsed and send to storage layer in separate thread ).
 Since there is no blocking calls in our design(like disk io , network calls) ,I made number thread equal to number of available processor ( 8 core CPU).
 There is no rule for Number of thread in application == number connection towards DB .but sake of simplicity this prototype each  thread is having  corresponding database connection in its threadlocal variable
-Storage layer 
+# Storage layer 
 Since we need to process and store records in mass volume (10000 records per day size of 10000 entry), its better to use NOSQL solution. I prefer  to use NOSQl because of following reason
 1.	Better scalability
 2.	No fixed rigid schema. column can be added dynamically  .in out use case some of our fields are optional(Department , hiring date)
@@ -13,8 +13,8 @@ Since we need to process and store records in mass volume (10000 records per day
 No need to maintain the number of connection by semaphore based approach 
 We can choose any Nosql solution .but I implemented this prototype with HBASE databse.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Low level Design :
-Application layer :
+# Low level Design :
+# Application layer :
 Its contain following main components :
 File Processor :
 Its starting point of application which take care of polling of files in corresponding directory.(in this prototype we are getting files from resource directory of eclipse projects).Ideally it should be implemented by FileWatcher API 
@@ -34,7 +34,7 @@ AssignementConstant :  list of mostly used constants
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Storage layer:
+# Storage layer:
 Note: Entire storage layer implementation act as  a mock functionality. Because we can’t able to run hbase in local. Its just prototype to demonstrate the real functionality and power of habse based implementation
 
 Tables are created at application startup if its already not created .No sql database not following strict schema.(prototype hbase design require at least one column family -  table name – Employee column family name – info)
@@ -43,7 +43,7 @@ Actual application layer and storage layer interaction happens in InsertIntoTabl
 Table object is used for insert the employee record at db.As its not having rigid schema ,some incomplete details employee are also persisted in database(in our case employee object is not having hiring date or dept)
  
 
-Steps to execute the application prototype:
+# Steps to execute the application prototype:
 1.Add some pipe separated input  files in project resource directory 
 2.Start the application by running FileProcessor.java [This class has main methods]
 3.You can see following results in out as a log statements
