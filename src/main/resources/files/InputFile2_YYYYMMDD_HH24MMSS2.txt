@@ -1,0 +1,16 @@
+#Id|Department|Name|HiringDate
+1|dept1|Emp1|25/05/2010
+2|dept2|Emp2|26/05/2010
+3|dept3|Emp3|
+4|dept4|Emp4|28/05/2010
+5|dept5|Emp5|29/05/2010
+6||Emp6|30/05/2010
+7|dept1|Emp7|31/05/2010
+8|dept2|Emp8|01/06/2010
+9||Emp9|02/06/2010
+10|dept4|Emp10|03/06/2010
+11|dept5|Emp11|
+12|dept6|Emp12|05/06/2010
+13|dept1|Emp13|06/06/2010
+14|dept2|Emp14|07/06/2010
+#RECORD COUNT 14
